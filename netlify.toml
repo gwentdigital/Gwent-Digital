@@ -1,0 +1,23 @@
+[build]
+  publish = "."
+  command = ""
+
+# Proxy /api/* to the admin backend so the public enquiry form can call a
+# same-origin path (avoids CORS entirely). Replace the target below with
+# your real deployed admin server URL (e.g. a Fly.io/Render/VPS address
+# running admin/server.py behind HTTPS).
+[[redirects]]
+  from = "/api/*"
+  to = "https://REPLACE-WITH-YOUR-ADMIN-SERVER-URL.example.com/api/:splat"
+  status = 200
+  force = true
+
+# Netlify serves /404.html automatically for unmatched paths — no rule needed.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

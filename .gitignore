@@ -1,0 +1,22 @@
+# Separate, unrelated project folders (own codebases, not part of the site)
+/Task UK/
+/birchwood-plumbing-redesign/
+/gwent-digital-site/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Internal admin tool — separate backend with real secrets/data, not part of the public site
+/admin/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local Claude settings
+/.claude/
+
+# Stray unreferenced file
+/1000002614.png
