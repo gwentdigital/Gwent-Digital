@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gwent Digital — asset pack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1F3B; --blue:#2563EB; --teal:#06B6D4; --gray:#F1F5F9;
+  --charcoal:#1F2937; --white:#fff; --line:#DCE3EC; --muted:#64748B;
+  --bg:var(--white); --fg:var(--charcoal); --panel:var(--gray); --edge:var(--line);
+  --head:var(--navy); --sub:var(--muted);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --bg:#0A1526; --fg:#E2E8F0; --panel:#0F2340;
+    --edge:#1E3A5F; --head:#F8FAFC; --sub:#94A3B8; }
+}
+:root[data-theme="dark"]{ --bg:#0A1526; --fg:#E2E8F0; --panel:#0F2340;
+  --edge:#1E3A5F; --head:#F8FAFC; --sub:#94A3B8; }
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:48px 20px 96px}
+h1,h2,h3{font-family:Poppins,Montserrat,system-ui,sans-serif;color:var(--head);margin:0}
+h1{font-size:clamp(28px,5vw,44px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(20px,3vw,26px);font-weight:600;margin:0 0 6px}
+h3{font-size:17px;font-weight:600;margin:0 0 6px}
+p{margin:0 0 14px;max-width:68ch}
+.lede{color:var(--sub);font-size:18px}
+section{margin-top:56px;padding-top:32px;border-top:1px solid var(--edge)}
+section:first-of-type{border-top:0}
+.note{color:var(--sub);font-size:14px;margin-bottom:22px}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.scroller svg{max-width:none}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-top:20px}
+.dept{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:20px}
+.dept p{margin:0;font-size:14.5px;color:var(--sub)}
+.tile{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;
+  background:rgba(37,99,235,.10);color:var(--blue);margin-bottom:14px}
+.tile svg{width:30px;height:30px}
+.two{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:20px}
+figure{margin:0}
+figcaption{font-size:13px;color:var(--sub);margin-top:8px;font-family:Inter,sans-serif}
+img,svg{max-width:100%;height:auto;display:block}
+.mark{width:120px}
+.sw{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;padding:0;list-style:none}
+.sw li{width:128px;font-size:12.5px;color:var(--sub)}
+.chip{height:64px;border-radius:12px;margin-bottom:8px;border:1px solid var(--edge)}
+code{font-size:13px;background:var(--panel);padding:2px 6px;border-radius:5px;border:1px solid var(--edge)}
+.warn{background:rgba(6,182,212,.08);border:1px solid var(--teal);border-radius:12px;padding:16px 18px;font-size:14.5px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><main class="wrap">
+
+<div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="gd-mark">
+  <title id="gd-mark">Gwent Digital mark</title>
+  <defs>
+    <linearGradient id="gd-ring" x1="14" y1="24" x2="150" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1F3B"/>
+      <stop offset="0.7" stop-color="#132B52"/>
+      <stop offset="1" stop-color="#0B1F3B"/>
+    </linearGradient>
+    <linearGradient id="gd-arrow" x1="58" y1="152" x2="152" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1D4ED8"/>
+      <stop offset="0.55" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="100" cy="100" r="71" fill="none" stroke="url(#gd-ring)" stroke-width="40"
+          stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+
+  <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="url(#gd-arrow)"/>
+  <path d="M108 58 L152 58 L152 102 Z" fill="url(#gd-arrow)"/>
+</svg>
+</div>
+<h1 style="margin-top:20px">Asset pack</h1>
+<p class="lede">Everything here is drawn in code, so it stays sharp at any size, weighs almost
+nothing, and can be recoloured by editing one hex value. Photographs are listed separately in
+the manifest — those have to be taken by hand.</p>
+
+<section>
+<h2>Palette</h2>
+<p class="note">Teal fails contrast as text on white. It is decoration only — rules, icon
+strokes, chart fills, gradient ends. Teal text is allowed on navy.</p>
+<ul class="sw">
+<li><div class="chip" style="background:#0B1F3B"></div>Deep navy<br>#0B1F3B</li>
+<li><div class="chip" style="background:#2563EB"></div>Royal blue<br>#2563EB</li>
+<li><div class="chip" style="background:#06B6D4"></div>Teal<br>#06B6D4</li>
+<li><div class="chip" style="background:#F1F5F9"></div>Light gray<br>#F1F5F9</li>
+<li><div class="chip" style="background:#1F2937"></div>Charcoal<br>#1F2937</li>
+</ul>
+</section>
+
+<section>
+<h2>Department icons</h2>
+<p class="note">Stroke uses <code>currentColor</code>, so the tile colour drives the icon.</p>
+<div class="grid"><article class="dept"><div class="tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none"
+     stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-labelledby="i-web"><title id="i-web">Websites</title>
+  <rect x="5" y="9" width="38" height="30" rx="4"/><path d="M5 18h38"/>
+  <path d="M19 26l-4 4 4 4"/><path d="M29 26l4 4-4 4"/>
+</svg>
+</div><h3>Websites</h3><p>Small business sites, multi-page builds, shops, redesigns.</p></article><article class="dept"><div class="tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none"
+     stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-labelledby="i-auto"><title id="i-auto">Automation</title>
+  <rect x="4" y="17" width="13" height="13" rx="3"/><rect x="31" y="6" width="13" height="13" rx="3"/>
+  <rect x="31" y="28" width="13" height="13" rx="3"/>
+  <path d="M17 22h7a3 3 0 003-3v-3"/><path d="M17 25h7a3 3 0 013 3v3"/>
+  <path d="M27 16l4-4"/><path d="M27 31l4 4"/>
+</svg>
+</div><h3>Automation</h3><p>Outreach, stock labels, invoices, reminders, reporting.</p></article><article class="dept"><div class="tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none"
+     stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-labelledby="i-ai"><title id="i-ai">Voice assistant</title>
+  <rect x="18" y="5" width="12" height="22" rx="6"/>
+  <path d="M11 22a13 13 0 0026 0"/><path d="M24 35v7"/>
+  <path d="M6 18v6"/><path d="M42 18v6"/>
+</svg>
+</div><h3>Voice assistants</h3><p>Zoya — takes calls and enquiries out of hours.</p></article><article class="dept"><div class="tile"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none"
+     stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-labelledby="i-data"><title id="i-data">Data and strategy</title>
+  <path d="M6 40V8"/><path d="M6 40h36"/>
+  <rect x="13" y="27" width="7" height="8" rx="1.5"/><rect x="24" y="21" width="7" height="14" rx="1.5"/>
+  <path d="M27 13l10-4"/><path d="M32 7l5 2-2 5"/>
+</svg>
+</div><h3>Data and strategy</h3><p>Find where the business leaks money before building.</p></article></div>
+</section>
+
+<section>
+<h2>How the automation works</h2>
+<p class="note">Built for the services page. The approval step is deliberately the loudest
+thing on the diagram — that is the objection most local owners raise first.</p>
+<div class="scroller"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 300" width="1260" height="300" role="img" aria-labelledby="af-t af-d">
+  <title id="af-t">How our outreach automation runs</title>
+  <desc id="af-d">Six stages: find prospects, draft the message, a human approves, send, log to the record, then report. Nothing sends without the approval stage.</desc>
+  <defs>
+    <linearGradient id="af-line" x1="0" y1="0" x2="1260" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <marker id="af-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94A3B8"/>
+    </marker>
+    <style>
+      .af-n  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#0B1F3B; }
+      .af-s  { font: 400 12.5px Inter, system-ui, sans-serif; fill:#64748B; }
+      .af-w  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#FFFFFF; }
+      .af-ws { font: 400 12.5px Inter, system-ui, sans-serif; fill:#BAE6FD; }
+      .af-k  { font: 600 11px Inter, system-ui, sans-serif; fill:#0B1F3B; letter-spacing:.4px; }
+    </style>
+  </defs>
+
+  <rect width="1260" height="300" rx="18" fill="#F1F5F9"/>
+  <rect x="24" y="24" width="1212" height="3" rx="1.5" fill="url(#af-line)"/>
+
+  <g stroke="#94A3B8" stroke-width="1.6" marker-end="url(#af-arw)">
+    <line x1="208" y1="150" x2="238" y2="150"/>
+    <line x1="410" y1="150" x2="440" y2="150"/>
+    <line x1="612" y1="150" x2="642" y2="150"/>
+    <line x1="838" y1="150" x2="868" y2="150"/>
+    <line x1="1040" y1="150" x2="1070" y2="150"/>
+  </g>
+
+  <g>
+    <rect x="24" y="100" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="24" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="af-n" x="46" y="136">Find</text>
+    <text class="af-s" x="46" y="160">Local businesses that</text>
+    <text class="af-s" x="46" y="178">match your customer</text>
+  </g>
+  <g>
+    <rect x="238" y="100" width="172" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="238" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="af-n" x="260" y="136">Draft</text>
+    <text class="af-s" x="260" y="160">A message written</text>
+    <text class="af-s" x="260" y="178">for that one business</text>
+  </g>
+
+  <g>
+    <rect x="440" y="88" width="172" height="124" rx="14" fill="#0B1F3B"/>
+    <rect x="440" y="88" width="172" height="124" rx="14" fill="none" stroke="#06B6D4" stroke-width="2"/>
+    <rect x="456" y="104" width="86" height="20" rx="10" fill="#06B6D4"/>
+    <text class="af-k" x="466" y="118">you decide</text>
+    <text class="af-w" x="456" y="152">Approve</text>
+    <text class="af-ws" x="456" y="176">Nothing leaves here</text>
+    <text class="af-ws" x="456" y="194">without your yes</text>
+  </g>
+
+  <g>
+    <rect x="642" y="100" width="196" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="642" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="af-n" x="664" y="136">Send</text>
+    <text class="af-s" x="664" y="160">From your own domain,</text>
+    <text class="af-s" x="664" y="178">spaced out, not blasted</text>
+  </g>
+  <g>
+    <rect x="868" y="100" width="172" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="868" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="af-n" x="890" y="136">Log</text>
+    <text class="af-s" x="890" y="160">Every contact stored,</text>
+    <text class="af-s" x="890" y="178">opt-outs honoured</text>
+  </g>
+  <g>
+    <rect x="1070" y="100" width="166" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="1070" y="100" width="4" height="100" rx="2" fill="#06B6D4"/>
+    <text class="af-n" x="1092" y="136">Report</text>
+    <text class="af-s" x="1092" y="160">Replies and results,</text>
+    <text class="af-s" x="1092" y="178">weekly</text>
+  </g>
+
+  <text class="af-s" x="24" y="266">Data held in the UK. Contacts can opt out at any time, and opt-outs are permanent.</text>
+</svg>
+</div>
+<div class="scroller" style="margin-top:26px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 300" width="1100" height="300" role="img" aria-labelledby="sb-t sb-d">
+  <title id="sb-t">How the social media manager works</title>
+  <desc id="sb-d">Five stages: ideas from your business, captions drafted in your voice, you approve, posts are scheduled, then results come back. You approve before anything is published.</desc>
+  <defs>
+    <linearGradient id="sb-line" x1="0" y1="0" x2="1100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <marker id="sb-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94A3B8"/>
+    </marker>
+    <style>
+      .sb-n  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#0B1F3B; }
+      .sb-s  { font: 400 12.5px Inter, system-ui, sans-serif; fill:#64748B; }
+      .sb-w  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#FFFFFF; }
+      .sb-ws { font: 400 12.5px Inter, system-ui, sans-serif; fill:#BAE6FD; }
+      .sb-k  { font: 600 11px Inter, system-ui, sans-serif; fill:#0B1F3B; letter-spacing:.4px; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="300" rx="18" fill="#F1F5F9"/>
+  <rect x="24" y="24" width="1052" height="3" rx="1.5" fill="url(#sb-line)"/>
+
+  <g stroke="#94A3B8" stroke-width="1.6" marker-end="url(#sb-arw)">
+    <line x1="214" y1="150" x2="244" y2="150"/>
+    <line x1="426" y1="150" x2="456" y2="150"/>
+    <line x1="628" y1="150" x2="658" y2="150"/>
+    <line x1="850" y1="150" x2="880" y2="150"/>
+  </g>
+
+  <g>
+    <rect x="24" y="100" width="190" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="24" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="sb-n" x="46" y="136">Ideas</text>
+    <text class="sb-s" x="46" y="160">Built from your offers,</text>
+    <text class="sb-s" x="46" y="178">menu and quiet days</text>
+  </g>
+  <g>
+    <rect x="244" y="100" width="182" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="244" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="sb-n" x="266" y="136">Caption</text>
+    <text class="sb-s" x="266" y="160">Written to sound like</text>
+    <text class="sb-s" x="266" y="178">you, not like a robot</text>
+  </g>
+  <g>
+    <rect x="456" y="88" width="172" height="124" rx="14" fill="#0B1F3B"/>
+    <rect x="456" y="88" width="172" height="124" rx="14" fill="none" stroke="#06B6D4" stroke-width="2"/>
+    <rect x="472" y="104" width="86" height="20" rx="10" fill="#06B6D4"/>
+    <text class="sb-k" x="482" y="118">you decide</text>
+    <text class="sb-w" x="472" y="152">Approve</text>
+    <text class="sb-ws" x="472" y="176">Edit or bin it</text>
+    <text class="sb-ws" x="472" y="194">before it goes out</text>
+  </g>
+  <g>
+    <rect x="658" y="100" width="192" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="658" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <text class="sb-n" x="680" y="136">Schedule</text>
+    <text class="sb-s" x="680" y="160">Posted at the hours</text>
+    <text class="sb-s" x="680" y="178">your customers are on</text>
+  </g>
+  <g>
+    <rect x="880" y="100" width="196" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
+    <rect x="880" y="100" width="4" height="100" rx="2" fill="#06B6D4"/>
+    <text class="sb-n" x="902" y="136">Results</text>
+    <text class="sb-s" x="902" y="160">What landed, what did</text>
+    <text class="sb-s" x="902" y="178">not, and what to repeat</text>
+  </g>
+
+  <text class="sb-s" x="24" y="266">Service we build for clients. Your accounts stay yours — we never take ownership of a page.</text>
+</svg>
+</div>
+</section>
+
+<section>
+<h2>Screenshot frames</h2>
+<p class="note">Drop a screenshot into the <code>&lt;image href&gt;</code> slot. Shown here with
+the placeholder, which is what renders until a real file exists.</p>
+<div class="two">
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="bf-title">
+  <title id="bf-title">Browser window containing a website screenshot</title>
+  <defs>
+    <clipPath id="bf-screen"><rect x="14" y="58" width="1172" height="728" rx="4"/></clipPath>
+    <clipPath id="bf-body"><rect width="1200" height="800" rx="16"/></clipPath>
+    <linearGradient id="bf-edge" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#bf-body)">
+    <rect width="1200" height="800" fill="#0B1F3B"/>
+    <!-- Replace href with your screenshot. Keep x/y/width/height exactly as-is. -->
+    <image href="REPLACE-ME.png" x="14" y="58" width="1172" height="728"
+           preserveAspectRatio="xMidYMin slice" clip-path="url(#bf-screen)"/>
+    <circle cx="34" cy="30" r="5.5" fill="#FFFFFF" opacity="0.25"/>
+    <circle cx="55" cy="30" r="5.5" fill="#FFFFFF" opacity="0.25"/>
+    <circle cx="76" cy="30" r="5.5" fill="#FFFFFF" opacity="0.25"/>
+    <rect x="104" y="18" width="330" height="24" rx="12" fill="#FFFFFF" opacity="0.08"/>
+    <text x="120" y="34" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-size="12.5"
+          fill="#FFFFFF" opacity="0.6">gwentdigital.co.uk</text>
+    <rect x="14" y="56" width="1172" height="2" fill="url(#bf-edge)"/>
+  </g>
+</svg>
+<figcaption>browser-frame.svg — 1200×800</figcaption></figure>
+<figure style="max-width:260px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 780" width="380" height="780" role="img" aria-labelledby="pf-title">
+  <title id="pf-title">Phone containing a mobile screenshot</title>
+  <defs><clipPath id="pf-screen"><rect x="14" y="14" width="352" height="752" rx="34"/></clipPath></defs>
+  <rect width="380" height="780" rx="46" fill="#0B1F3B"/>
+  <!-- Replace href with your screenshot. Keep x/y/width/height exactly as-is. -->
+  <image href="REPLACE-ME.png" x="14" y="14" width="352" height="752"
+         preserveAspectRatio="xMidYMin slice" clip-path="url(#pf-screen)"/>
+  <rect x="14" y="14" width="352" height="752" rx="34" fill="none" stroke="#06B6D4" stroke-opacity="0.45"/>
+  <rect x="150" y="22" width="80" height="17" rx="8.5" fill="#0B1F3B"/>
+  <rect x="160" y="750" width="60" height="4" rx="2" fill="#FFFFFF" opacity="0.45"/>
+</svg>
+<figcaption>phone-frame.svg — 380×780</figcaption></figure>
+</div>
+</section>
+
+<section>
+<h2>Surfaces</h2>
+<div class="two">
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" role="presentation" aria-hidden="true">
+  <defs>
+    <linearGradient id="cd-g" x1="0" y1="480" x2="720" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1F3B"/><stop offset="0.72" stop-color="#132F5C"/><stop offset="1" stop-color="#1E4FA8"/>
+    </linearGradient>
+    <clipPath id="cd-c"><rect width="720" height="480" rx="18"/></clipPath>
+  </defs>
+  <g clip-path="url(#cd-c)">
+    <rect width="720" height="480" fill="url(#cd-g)"/>
+    <g stroke="#06B6D4" stroke-opacity="0.22" stroke-width="2" fill="none">
+      <path d="M470 430 L620 280"/><path d="M510 430 L660 280"/><path d="M550 430 L700 280"/>
+    </g>
+    <path d="M596 210 L700 210 L700 314 Z" fill="#06B6D4" opacity="0.16"/>
+    <rect y="477" width="720" height="3" fill="#06B6D4" opacity="0.5"/>
+  </g>
+</svg>
+<figcaption>card-bg-dark.svg</figcaption></figure>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 480" width="720" height="480" role="presentation" aria-hidden="true">
+  <defs>
+    <pattern id="cl-p" width="56" height="56" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+      <path d="M0 28h56" stroke="#2563EB" stroke-opacity="0.07" stroke-width="2"/>
+    </pattern>
+    <clipPath id="cl-c"><rect width="720" height="480" rx="18"/></clipPath>
+  </defs>
+  <g clip-path="url(#cl-c)">
+    <rect width="720" height="480" fill="#F1F5F9"/>
+    <rect width="720" height="480" fill="url(#cl-p)"/>
+    <path d="M620 96 L700 96 L700 176 Z" fill="#06B6D4" opacity="0.14"/>
+  </g>
+  <rect x="0.5" y="0.5" width="719" height="479" rx="18" fill="none" stroke="#DCE3EC"/>
+</svg>
+<figcaption>card-bg-light.svg</figcaption></figure>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-labelledby="ph-t">
+  <title id="ph-t">Image not supplied yet</title>
+  <rect width="1200" height="800" rx="14" fill="#F1F5F9"/>
+  <rect x="1" y="1" width="1198" height="798" rx="14" fill="none" stroke="#DCE3EC" stroke-dasharray="10 8"/>
+  <g opacity="0.22" transform="translate(500 300) scale(1)">
+    <circle cx="100" cy="100" r="71" fill="none" stroke="#0B1F3B" stroke-width="40"
+            stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+    <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="#2563EB"/>
+    <path d="M108 58 L152 58 L152 102 Z" fill="#06B6D4"/>
+  </g>
+  <text x="600" y="560" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
+        font-size="20" fill="#64748B">Image to be added</text>
+</svg>
+<figcaption>placeholder.svg — the fallback for every missing photo</figcaption></figure>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="presentation" aria-hidden="true">
+  <rect width="160" height="160" fill="#0B1F3B"/>
+  <g stroke="#2563EB" stroke-opacity="0.3" stroke-width="2.5" fill="none" stroke-linecap="square">
+    <path d="M0 120 L40 80 L80 120"/><path d="M80 120 L120 80 L160 120"/>
+    <path d="M0 40 L40 0 L80 40"/><path d="M80 40 L120 0 L160 40"/>
+  </g>
+</svg>
+<figcaption>pattern-chevron.svg — tiles seamlessly</figcaption></figure>
+</div>
+<div style="margin-top:20px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 72" width="1440" height="72" preserveAspectRatio="none" role="presentation" aria-hidden="true">
+  <defs><linearGradient id="dv-g" x1="0" y1="0" x2="1440" y2="0" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#0B1F3B"/><stop offset="0.6" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+  </linearGradient></defs>
+  <rect y="34" width="1440" height="2" fill="#DCE3EC"/>
+  <rect x="96" y="32" width="220" height="6" rx="3" fill="url(#dv-g)"/>
+</svg>
+</div>
+</section>
+
+<section>
+<h2>Before this goes live</h2>
+<div class="warn">
+<p style="margin:0 0 10px"><strong>The mark above is a reconstruction</strong>, drawn from the
+brand sheet image. Close, not identical. Replace it with the master vector file before any
+print or large-format use.</p>
+<p style="margin:0">Showcase cards are labelled <strong>Group business</strong>, never
+<strong>Client</strong>. Command centre screenshots must have prospect data removed, not
+blurred. Any result without evidence stays as <code>[RESULT NEEDED]</code>.</p>
+</div>
+</section>
+
+</main></body></html>

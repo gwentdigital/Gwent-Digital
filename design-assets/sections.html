@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gwent Digital — what we do &amp; what we&rsquo;ve built</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1F3B; --blue:#2563EB; --teal:#06B6D4; --gray:#F1F5F9;
+  --charcoal:#1F2937; --white:#fff; --line:#DCE3EC; --muted:#64748B;
+  --bg:#fff; --fg:var(--charcoal); --panel:var(--gray); --edge:var(--line);
+  --head:var(--navy); --sub:var(--muted); --card:#fff;
+  --f-display:Poppins,Montserrat,system-ui,sans-serif;
+  --f-body:Inter,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#08121F; --fg:#DDE5EE; --panel:#0E2138; --edge:#1D3A5F;
+    --head:#F8FAFC; --sub:#94A3B8; --card:#0D1C30;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#08121F; --fg:#DDE5EE; --panel:#0E2138; --edge:#1D3A5F;
+  --head:#F8FAFC; --sub:#94A3B8; --card:#0D1C30;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.7 var(--f-body);
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);color:var(--head);margin:0;letter-spacing:-.015em}
+h2{font-size:clamp(26px,4.4vw,40px);font-weight:700;line-height:1.15}
+h3{font-size:clamp(19px,2.4vw,23px);font-weight:600;line-height:1.25}
+h4{font-size:16px;font-weight:600}
+p{margin:0 0 16px}
+a{color:var(--blue)}
+ul{margin:0 0 16px;padding-left:20px}
+li{margin-bottom:7px}
+img,svg{max-width:100%;height:auto;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sec{padding:80px 0;border-top:1px solid var(--edge)}
+.sec-head{max-width:62ch;margin-bottom:44px}
+.sec-head p{color:var(--sub);font-size:18px;margin:14px 0 0}
+.kicker{font:600 13px/1 var(--f-body);color:var(--blue);letter-spacing:.06em;
+  text-transform:uppercase;margin:0 0 14px;display:block}
+
+/* ---------- departments ---------- */
+.depts{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.dept{background:var(--card);border:1px solid var(--edge);border-radius:18px;padding:30px;
+  display:flex;flex-direction:column}
+.dept--lead{grid-column:1/-1;background:var(--navy);border-color:var(--navy);color:#DDE7F5}
+.dept--lead h3,.dept--lead h4{color:#fff}
+.dept--lead .tile{background:rgba(6,182,212,.16);color:var(--teal)}
+.dept--lead .promise{color:#9FD8E8}
+.dept--lead li{color:#C7D6E8}
+.dept--lead .price{border-top-color:rgba(255,255,255,.16);color:#9FD8E8}
+.tile{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;
+  background:rgba(37,99,235,.10);color:var(--blue);margin-bottom:18px;flex:none}
+.tile svg{width:29px;height:29px}
+.promise{font-family:var(--f-display);font-weight:500;font-size:17px;color:var(--blue);
+  margin:8px 0 18px}
+.dept ul{list-style:none;padding:0;margin:0 0 22px}
+.dept li{position:relative;padding-left:22px;font-size:15px;color:var(--sub)}
+.dept--lead li{color:#C7D6E8}
+.dept li::before{content:"";position:absolute;left:0;top:10px;width:9px;height:2px;
+  background:var(--teal);border-radius:1px}
+.price{margin-top:auto;padding-top:18px;border-top:1px solid var(--edge);
+  font-size:14px;color:var(--sub)}
+.price strong{color:var(--head);font-family:var(--f-display);font-weight:600}
+.dept--lead .price strong{color:#fff}
+.subgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  margin:8px 0 24px}
+.sub{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:18px}
+.sub p{font-size:14.5px;color:#C7D6E8;margin:6px 0 0}
+.flag{display:inline-block;font:600 11px/1 var(--f-body);letter-spacing:.05em;
+  text-transform:uppercase;padding:6px 10px;border-radius:999px;margin-bottom:10px}
+.flag--dev{background:rgba(6,182,212,.18);color:var(--teal)}
+
+/* ---------- showcase ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+.lg{font:500 13px/1 var(--f-body);padding:9px 14px;border-radius:999px;
+  border:1px solid var(--edge);color:var(--sub);background:var(--card)}
+.lg b{font-weight:600;color:var(--head)}
+
+.tier{margin-bottom:64px}
+.tier-title{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.tier > p{color:var(--sub);max-width:64ch;margin-bottom:28px}
+
+.label{font:600 11px/1 var(--f-body);letter-spacing:.07em;text-transform:uppercase;
+  padding:7px 11px;border-radius:6px}
+.label--group{background:var(--navy);color:#fff}
+.label--studio{background:rgba(37,99,235,.12);color:var(--blue);
+  border:1px solid rgba(37,99,235,.35)}
+.label--dev{background:transparent;color:var(--teal);border:1px dashed var(--teal)}
+
+/* group business: big, photo-led */
+.cases{display:grid;gap:28px}
+.case{display:grid;gap:0;background:var(--card);border:1px solid var(--edge);
+  border-radius:20px;overflow:hidden}
+@media(min-width:820px){ .case{grid-template-columns:minmax(0,46%) minmax(0,54%)} }
+.shot{position:relative;background:var(--panel);min-height:250px;display:grid;
+  place-items:center;border-bottom:1px solid var(--edge)}
+@media(min-width:820px){ .shot{border-bottom:0;border-right:1px solid var(--edge)} }
+.shot figcaption{position:absolute;bottom:12px;left:12px;font:500 11.5px/1 var(--f-body);
+  color:var(--sub);background:var(--bg);border:1px solid var(--edge);
+  padding:6px 9px;border-radius:6px}
+.shot .ghost{width:96px;opacity:.2}
+.case-body{padding:30px 32px}
+.case-body h3{margin-bottom:6px}
+.meta{font-size:14px;color:var(--sub);margin:0 0 20px}
+.qa{margin:0 0 16px}
+.qa dt{font-family:var(--f-display);font-weight:600;font-size:13.5px;color:var(--head);
+  margin-bottom:3px}
+.qa dd{margin:0 0 15px;font-size:15px;color:var(--sub)}
+.result{background:var(--panel);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;
+  padding:14px 16px;font-size:14.5px}
+.result strong{font-family:var(--f-display);color:var(--head);display:block;margin-bottom:3px;
+  font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.needed{color:#B45309;font-weight:600;background:rgba(245,158,11,.14);padding:1px 6px;
+  border-radius:4px}
+
+/* studio builds: medium, screenshot-led */
+.builds{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.build{background:var(--card);border:1px solid var(--edge);border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column}
+.build .shot{min-height:200px;border-right:0;border-bottom:1px solid var(--edge)}
+.build-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.build-body h3{font-size:19px;margin-bottom:8px}
+.build-body p{font-size:15px;color:var(--sub);margin-bottom:14px}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.stack span{font:500 12px/1 var(--f-body);padding:6px 9px;border-radius:6px;
+  background:var(--panel);border:1px solid var(--edge);color:var(--sub)}
+
+/* in development: quiet, outline */
+.devs{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.dev{border:1px dashed var(--edge);border-radius:18px;padding:26px;background:transparent}
+.dev h3{font-size:18px;margin-bottom:8px}
+.dev p{font-size:15px;color:var(--sub);margin-bottom:14px}
+.status{font:500 13px/1.5 var(--f-body);color:var(--teal)}
+
+.honesty{margin-top:8px;background:var(--panel);border:1px solid var(--edge);
+  border-radius:18px;padding:28px 30px}
+.honesty h3{font-size:19px;margin-bottom:10px}
+.honesty p{font-size:15px;color:var(--sub);margin-bottom:0;max-width:72ch}
+
+.cta{text-align:center;padding:72px 0}
+.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;
+  font-family:var(--f-display);font-weight:600;font-size:16px;padding:16px 30px;
+  border-radius:12px}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= DEPARTMENTS ================= -->
+<section class="sec" id="services" style="border-top:0">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="kicker">What we do</span>
+    <h2>Four departments, one job: make the business work better.</h2>
+    <p>We run shops and a restaurant in Newport ourselves. So we start with the numbers,
+       find where the money is actually leaking, and only then decide what to build.</p>
+  </div>
+
+  <div class="depts">
+
+    <!-- lead department: automation -->
+    <article class="dept dept--lead">
+      <div class="tile">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="4" y="17" width="13" height="13" rx="3"/><rect x="31" y="6" width="13" height="13" rx="3"/>
+          <rect x="31" y="28" width="13" height="13" rx="3"/>
+          <path d="M17 22h7a3 3 0 003-3v-3"/><path d="M17 25h7a3 3 0 013 3v3"/>
+          <path d="M27 16l4-4"/><path d="M27 31l4 4"/>
+        </svg>
+      </div>
+      <h3>Business automation</h3>
+      <p class="promise">The jobs you do every week, done without you doing them.</p>
+
+      <div class="subgrid">
+        <div class="sub">
+          <h4>Finding new customers</h4>
+          <p>We build a list of local businesses that match the kind of customer you already
+             have, draft a message for each one, and hold it for you to approve. Nothing sends
+             on its own. Every contact is stored, and an opt-out is permanent.</p>
+        </div>
+        <div class="sub">
+          <h4>Social media manager</h4>
+          <p>Post ideas built from your own offers and your quiet days, captions written to
+             sound like you, scheduled for the hours your customers are actually on their
+             phones. You see every post before it goes out, and can edit or bin it.</p>
+        </div>
+        <div class="sub">
+          <h4>The jobs nobody wants</h4>
+          <p>Price labels printed straight from your stock list. Quotes and invoices raised
+             from a form. Booking reminders. Review requests after a job. A weekly summary
+             that tells you what happened without you opening five apps.</p>
+        </div>
+      </div>
+
+      <ul>
+        <li>Every automation has an approval step. You are never surprised by something it sent.</li>
+        <li>Your data stays in the UK and we set up your email properly so it lands, not bounces.</li>
+        <li>You own it. If you stop working with us, the system and the data stay yours.</li>
+      </ul>
+      <p class="price"><strong>From &pound;800 to set up</strong> &middot; then &pound;150&ndash;&pound;500 a month depending on how much it runs
+        <br><span style="opacity:.75">[PRICES PROPOSED &mdash; confirm before publishing]</span></p>
+    </article>
+
+    <!-- websites -->
+    <article class="dept">
+      <div class="tile">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="5" y="9" width="38" height="30" rx="4"/><path d="M5 18h38"/>
+          <path d="M19 26l-4 4 4 4"/><path d="M29 26l4 4-4 4"/>
+        </svg>
+      </div>
+      <h3>Websites</h3>
+      <p class="promise">A site that brings in calls, not just compliments.</p>
+      <ul>
+        <li>One-page sites for trades and small shops</li>
+        <li>Full business sites with booking or enquiry forms</li>
+        <li>Online shops, and fixing shops that are losing sales at checkout</li>
+        <li>Rebuilds of slow sites &mdash; speed is the most common silent killer</li>
+        <li>Google Business setup and local search, so Newport can find you</li>
+      </ul>
+      <p class="price"><strong>&pound;600&ndash;&pound;1,200</strong> one page &middot; <strong>&pound;1,500&ndash;&pound;3,500</strong> full site &middot; <strong>&pound;3,500+</strong> shop
+        <br><span style="opacity:.75">[PRICES PROPOSED &mdash; confirm]</span></p>
+    </article>
+
+    <!-- voice assistants -->
+    <article class="dept">
+      <div class="tile">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="18" y="5" width="12" height="22" rx="6"/>
+          <path d="M11 22a13 13 0 0026 0"/><path d="M24 35v7"/>
+          <path d="M6 18v6"/><path d="M42 18v6"/>
+        </svg>
+      </div>
+      <span class="flag flag--dev">In development</span>
+      <h3>Voice assistants</h3>
+      <p class="promise">The calls you miss after closing time are the ones that cost most.</p>
+      <ul>
+        <li>Answers by voice when nobody is free to pick up</li>
+        <li>Takes booking and enquiry details and passes them to you</li>
+        <li>Answers the same five questions you get asked every day</li>
+        <li>Speaks English; we are testing other languages</li>
+      </ul>
+      <p class="price"><strong>Not released yet.</strong> We are building this now and testing it in
+        our own businesses first. Join the waiting list and you will be in the first group.</p>
+    </article>
+
+    <!-- data & strategy -->
+    <article class="dept">
+      <div class="tile">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 40V8"/><path d="M6 40h36"/>
+          <rect x="13" y="27" width="7" height="8" rx="1.5"/><rect x="24" y="21" width="7" height="14" rx="1.5"/>
+          <path d="M27 13l10-4"/><path d="M32 7l5 2-2 5"/>
+        </svg>
+      </div>
+      <h3>Data and strategy</h3>
+      <p class="promise">We look before we build. Most of the time the fix is cheaper than you think.</p>
+      <ul>
+        <li>A written audit of your website, your Google listing and your reviews</li>
+        <li>Where enquiries are being lost, and roughly what that is costing</li>
+        <li>What to fix first, second and third &mdash; in order, with prices</li>
+        <li>One of us is a data scientist. The numbers are read properly, not guessed at</li>
+      </ul>
+      <p class="price"><strong>Free for Newport businesses</strong> while we are taking on our first clients.
+        No obligation, and the report is yours either way.</p>
+    </article>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ================= SHOWCASE ================= -->
+<section class="sec" id="showcase">
+<div class="wrap">
+  <div class="sec-head">
+    <span class="kicker">What we&rsquo;ve built</span>
+    <h2>We tried everything here on our own businesses first.</h2>
+    <p>Gwent Digital is new. The businesses behind it are not. Rather than borrow someone
+       else&rsquo;s logo and call it a case study, here is exactly what we have built, who it was
+       built for, and where it currently stands.</p>
+  </div>
+
+  <div class="legend">
+    <span class="lg"><b>Group business</b> &mdash; we own and run it</span>
+    <span class="lg"><b>Studio build</b> &mdash; built by us, for us</span>
+    <span class="lg"><b>In development</b> &mdash; not finished</span>
+  </div>
+
+  <!-- ---------- TIER 1 ---------- -->
+  <div class="tier">
+    <div class="tier-title"><h3>Our own businesses</h3><span class="label label--group">Group business</span></div>
+    <p>These are ours. We are not presenting them as client work, because they were not.
+       What they do show is that we have solved these problems with real money on the line.</p>
+
+    <div class="cases">
+
+      <!-- My Punjab -->
+      <article class="case">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>my-punjab-shopfront.webp</figcaption>
+        </figure>
+        <div class="case-body">
+          <h3>My Punjab Desi Kitchen</h3>
+          <p class="meta">Punjabi restaurant &middot; Commercial Street, Newport &middot; open about a year</p>
+          <dl class="qa">
+            <dt>The problem</dt>
+            <dd>A year in, with good food and quiet weekdays. Plenty of people within walking
+                distance had simply never heard of it, and the online presence was not doing
+                any selling.</dd>
+            <dt>What we did</dt>
+            <dd>Worked out who was actually within reach &mdash; students, people working in town,
+                families &mdash; and wrote for each of them separately rather than posting the same
+                thing at everyone. Built a 60-second ad around what the place actually is:
+                food that tastes like home when you are a long way from it. Wrote the script,
+                the story behind it and the captions to go with it, then put a turnaround plan
+                together for the week-by-week running of it.</dd>
+          </dl>
+          <div class="result"><strong>Result</strong>
+            <span class="needed">[RESULT NEEDED]</span> &mdash; add the covers or weekly takings
+            figure once you have a clean before-and-after. Do not publish this card without it.</div>
+        </div>
+      </article>
+
+      <!-- Fonetech -->
+      <article class="case">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>fonetech-labels.webp</figcaption>
+        </figure>
+        <div class="case-body">
+          <h3>Fonetech Solutions</h3>
+          <p class="meta">Phone and laptop sales and repair &middot; Newport</p>
+          <dl class="qa">
+            <dt>The problem</dt>
+            <dd>Price labels were being written out by hand, so stock went on the shelf
+                unpriced and customers had to ask. Separately, the shop was invisible online
+                on exactly the days it most needed walk-ins.</dd>
+            <dt>What we did</dt>
+            <dd>Built a label system that prints straight to the shop&rsquo;s thermal printer &mdash;
+                one label per page, correct size for phones and for laptops, no fiddling with
+                sheet layouts. Then set up a weekend offer routine: screen repair and battery
+                deals, free diagnosis, and a case-and-glass bundle at a fixed price, posted to
+                Newport local groups where people actually ask for recommendations.</dd>
+          </dl>
+          <div class="result"><strong>Result</strong>
+            Stock now goes out priced the same day.
+            <span class="needed">[RESULT NEEDED]</span> &mdash; add how many enquiries the weekend
+            posts brought in, from a month you can evidence.</div>
+        </div>
+      </article>
+
+      <!-- Azi Phones -->
+      <article class="case">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>azi-phones.webp</figcaption>
+        </figure>
+        <div class="case-body">
+          <h3>Azi Phones</h3>
+          <p class="meta">Mobile retail &middot; Newport</p>
+          <dl class="qa">
+            <dt>The problem</dt>
+            <dd><span class="needed">[DETAIL NEEDED]</span> &mdash; tell me what was actually wrong
+                here and I will write this card properly.</dd>
+            <dt>What we did</dt>
+            <dd><span class="needed">[DETAIL NEEDED]</span></dd>
+          </dl>
+          <div class="result"><strong>Result</strong>
+            <span class="needed">[RESULT NEEDED]</span> &mdash; if there is nothing solid to say,
+            cut this card entirely. Two strong cards beat three thin ones.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ---------- TIER 2 ---------- -->
+  <div class="tier">
+    <div class="tier-title"><h3>Built in the studio</h3><span class="label label--studio">Studio build</span></div>
+    <p>Tools we built for ourselves, which is the honest reason we can build them for you.</p>
+
+    <div class="builds">
+
+      <article class="build">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>screen-command-centre.png</figcaption>
+        </figure>
+        <div class="build-body">
+          <h3>Our own command centre</h3>
+          <p>The system that finds local businesses worth talking to, drafts a message for
+             each one, and then stops and waits for a human to say yes. It logs every contact
+             and honours every opt-out. This is the same thing we set up for clients &mdash; we
+             just built ours first.</p>
+          <div class="stack"><span>Supabase (UK)</span><span>Google Places</span>
+            <span>Scheduled runs</span><span>Approval gate</span></div>
+        </div>
+      </article>
+
+      <article class="build">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>screen-gwentdigital.png</figcaption>
+        </figure>
+        <div class="build-body">
+          <h3>This website</h3>
+          <p>Built by us, start to finish. Fast on a phone, readable with a screen reader,
+             and marked up so Google knows we are a business in Newport rather than a page
+             floating somewhere on the internet. If you want to know what we build, you are
+             already looking at it.</p>
+          <div class="stack"><span>Responsive</span><span>Local search markup</span>
+            <span>Accessible</span><span>Enquiry form</span></div>
+        </div>
+      </article>
+
+      <article class="build">
+        <figure class="shot">
+          <svg class="ghost" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="71" fill="none" stroke="currentColor" stroke-width="40"
+                    stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
+            <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="currentColor"/>
+            <path d="M108 58 L152 58 L152 102 Z" fill="currentColor"/>
+          </svg>
+          <figcaption>screen-label-system.png</figcaption>
+        </figure>
+        <div class="build-body">
+          <h3>Stock label printing</h3>
+          <p>A small tool doing a boring job well. Stock list in, correctly sized labels out,
+             one per page, straight to the shop&rsquo;s thermal printer. Two sizes, phones and
+             laptops. It replaced a job that used to be done with a marker pen.</p>
+          <div class="stack"><span>Thermal printer</span><span>Two label sizes</span>
+            <span>Print-ready PDF</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- ---------- TIER 3 ---------- -->
+  <div class="tier">
+    <div class="tier-title"><h3>Being built now</h3><span class="label label--dev">In development</span></div>
+    <p>Listed here so you know what is coming, and so nobody is sold something that does not
+       exist yet.</p>
+
+    <div class="devs">
+      <article class="dev">
+        <h3>Zoya &mdash; voice assistant</h3>
+        <p>Answers the phone by voice when you cannot. Takes the caller&rsquo;s details, answers
+           the routine questions, and hands anything real straight to you.</p>
+        <p class="status">Currently being tested in our own shop. Not available to buy yet.</p>
+      </article>
+      <article class="dev">
+        <h3>Social media manager</h3>
+        <p>The posting side of the automation running on its own schedule, with every post
+           held for approval before it goes anywhere.</p>
+        <p class="status">Working, being refined on our own accounts before it is offered.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="honesty">
+    <h3>Why there are no client logos on this page</h3>
+    <p>Because we do not have any yet, and putting them there would be the first thing we
+       ever lied to you about. Everything above is either ours or built by us. The first
+       business that works with us will get the attention that comes with being first, and
+       a price that reflects it.</p>
+  </div>
+</div>
+</section>
+
+<div class="cta wrap">
+  <h2 style="margin-bottom:16px">Want the free audit?</h2>
+  <p style="color:var(--sub);max-width:52ch;margin:0 auto 26px">
+    We will look at your site, your Google listing and your reviews, and send you a written
+    report. No charge, no obligation, and you keep it either way.</p>
+  <a class="btn" href="#contact">Request your audit</a>
+</div>
+
+</body>
+</html>
