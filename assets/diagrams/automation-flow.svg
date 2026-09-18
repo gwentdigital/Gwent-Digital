@@ -3,17 +3,17 @@
   <desc id="af-d">Six stages: find prospects, draft the message, a human approves, send, log to the record, then report. Nothing sends without the approval stage.</desc>
   <defs>
     <linearGradient id="af-line" x1="0" y1="0" x2="1260" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+      <stop offset="0" stop-color="#7BA428"/><stop offset="1" stop-color="#A6CB5E"/>
     </linearGradient>
     <marker id="af-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0 0 L10 5 L0 10 z" fill="#94A3B8"/>
     </marker>
     <style>
-      .af-n  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#0B1F3B; }
+      .af-n  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#14181F; }
       .af-s  { font: 400 12.5px Inter, system-ui, sans-serif; fill:#64748B; }
       .af-w  { font: 600 15px Poppins, Montserrat, system-ui, sans-serif; fill:#FFFFFF; }
-      .af-ws { font: 400 12.5px Inter, system-ui, sans-serif; fill:#BAE6FD; }
-      .af-k  { font: 600 11px Inter, system-ui, sans-serif; fill:#0B1F3B; letter-spacing:.4px; }
+      .af-ws { font: 400 12.5px Inter, system-ui, sans-serif; fill:#F5F7F7; }
+      .af-k  { font: 600 11px Inter, system-ui, sans-serif; fill:#14181F; letter-spacing:.4px; }
     </style>
   </defs>
 
@@ -30,23 +30,23 @@
 
   <g>
     <rect x="24" y="100" width="184" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
-    <rect x="24" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <rect x="24" y="100" width="4" height="100" rx="2" fill="#7BA428"/>
     <text class="af-n" x="46" y="136">Find</text>
     <text class="af-s" x="46" y="160">Local businesses that</text>
     <text class="af-s" x="46" y="178">match your customer</text>
   </g>
   <g>
     <rect x="238" y="100" width="172" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
-    <rect x="238" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <rect x="238" y="100" width="4" height="100" rx="2" fill="#7BA428"/>
     <text class="af-n" x="260" y="136">Draft</text>
     <text class="af-s" x="260" y="160">A message written</text>
     <text class="af-s" x="260" y="178">for that one business</text>
   </g>
 
   <g>
-    <rect x="440" y="88" width="172" height="124" rx="14" fill="#0B1F3B"/>
-    <rect x="440" y="88" width="172" height="124" rx="14" fill="none" stroke="#06B6D4" stroke-width="2"/>
-    <rect x="456" y="104" width="86" height="20" rx="10" fill="#06B6D4"/>
+    <rect x="440" y="88" width="172" height="124" rx="14" fill="#14181F"/>
+    <rect x="440" y="88" width="172" height="124" rx="14" fill="none" stroke="#A6CB5E" stroke-width="2"/>
+    <rect x="456" y="104" width="86" height="20" rx="10" fill="#A6CB5E"/>
     <text class="af-k" x="466" y="118">you decide</text>
     <text class="af-w" x="456" y="152">Approve</text>
     <text class="af-ws" x="456" y="176">Nothing leaves here</text>
@@ -55,21 +55,21 @@
 
   <g>
     <rect x="642" y="100" width="196" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
-    <rect x="642" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <rect x="642" y="100" width="4" height="100" rx="2" fill="#7BA428"/>
     <text class="af-n" x="664" y="136">Send</text>
     <text class="af-s" x="664" y="160">From your own domain,</text>
     <text class="af-s" x="664" y="178">spaced out, not blasted</text>
   </g>
   <g>
     <rect x="868" y="100" width="172" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
-    <rect x="868" y="100" width="4" height="100" rx="2" fill="#2563EB"/>
+    <rect x="868" y="100" width="4" height="100" rx="2" fill="#7BA428"/>
     <text class="af-n" x="890" y="136">Log</text>
     <text class="af-s" x="890" y="160">Every contact stored,</text>
     <text class="af-s" x="890" y="178">opt-outs honoured</text>
   </g>
   <g>
     <rect x="1070" y="100" width="166" height="100" rx="14" fill="#FFFFFF" stroke="#DCE3EC"/>
-    <rect x="1070" y="100" width="4" height="100" rx="2" fill="#06B6D4"/>
+    <rect x="1070" y="100" width="4" height="100" rx="2" fill="#A6CB5E"/>
     <text class="af-n" x="1092" y="136">Report</text>
     <text class="af-s" x="1092" y="160">Replies and results,</text>
     <text class="af-s" x="1092" y="178">weekly</text>

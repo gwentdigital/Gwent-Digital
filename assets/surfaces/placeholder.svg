@@ -3,10 +3,10 @@
   <rect width="1200" height="800" rx="14" fill="#F1F5F9"/>
   <rect x="1" y="1" width="1198" height="798" rx="14" fill="none" stroke="#DCE3EC" stroke-dasharray="10 8"/>
   <g opacity="0.22" transform="translate(500 300) scale(1)">
-    <circle cx="100" cy="100" r="71" fill="none" stroke="#0B1F3B" stroke-width="40"
+    <circle cx="100" cy="100" r="71" fill="none" stroke="#14181F" stroke-width="40"
             stroke-dasharray="372 74" transform="rotate(12 100 100)"/>
-    <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="#2563EB"/>
-    <path d="M108 58 L152 58 L152 102 Z" fill="#06B6D4"/>
+    <path d="M57 133 L119 71 L137 89 L75 151 Z" fill="#7BA428"/>
+    <path d="M108 58 L152 58 L152 102 Z" fill="#A6CB5E"/>
   </g>
   <text x="600" y="560" text-anchor="middle" font-family="Inter, system-ui, sans-serif"
         font-size="20" fill="#64748B">Image to be added</text>

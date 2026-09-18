@@ -4,11 +4,11 @@
     <clipPath id="bf-screen"><rect x="14" y="58" width="1172" height="728" rx="4"/></clipPath>
     <clipPath id="bf-body"><rect width="1200" height="800" rx="16"/></clipPath>
     <linearGradient id="bf-edge" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2563EB"/><stop offset="1" stop-color="#06B6D4"/>
+      <stop offset="0" stop-color="#7BA428"/><stop offset="1" stop-color="#A6CB5E"/>
     </linearGradient>
   </defs>
   <g clip-path="url(#bf-body)">
-    <rect width="1200" height="800" fill="#0B1F3B"/>
+    <rect width="1200" height="800" fill="#14181F"/>
     <!-- Replace href with your screenshot. Keep x/y/width/height exactly as-is. -->
     <image href="REPLACE-ME.png" x="14" y="58" width="1172" height="728"
            preserveAspectRatio="xMidYMin slice" clip-path="url(#bf-screen)"/>

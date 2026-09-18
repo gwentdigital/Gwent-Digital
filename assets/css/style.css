@@ -138,7 +138,7 @@ section{padding:88px 0;}
 .brand img.logo-img{height:40px;width:auto;}
 .brand svg.logo-fallback{height:40px;width:40px;}
 .brand-name{font-family:var(--font-head);font-weight:800;font-size:1.25rem;letter-spacing:-.01em;color:var(--navy);text-transform:lowercase;}
-.brand-name::after{content:".";color:var(--gold);}
+.brand-name::after{content:".";color:var(--gold-dark);}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0;}
 .nav-links > li{position:relative;}
 .nav-links a:not(.btn){display:inline-flex;align-items:center;gap:5px;padding:10px 14px;text-decoration:none;color:var(--navy);font-weight:600;border-radius:8px;transition:background .18s ease,color .18s ease;}
@@ -337,6 +337,46 @@ section{padding:88px 0;}
 .work-cta-card{border-radius:var(--radius);background:var(--navy);color:var(--white);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:14px;padding:28px;text-align:left;}
 .work-cta-card h4{color:var(--white);font-size:1.2rem;margin:0;}
 .work-cta-card p{color:var(--ice);font-size:.94rem;margin:0;}
+
+/* Four-tier "Our work" showcase — client work / group business / studio build / in development */
+.badge-client{background:var(--navy);color:var(--white);}
+.badge-dev{background:var(--ice-soft);color:var(--navy);border:1px solid var(--border);}
+.work-legend{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin:-8px 0 34px;font-size:.9rem;color:var(--gray);}
+.work-legend .badge{margin-right:2px;}
+.work-tier{margin-bottom:44px;}
+.work-tier-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.work-tier-head h3{font-size:1.3rem;margin:0;}
+.work-tier-intro{color:var(--gray);max-width:64ch;margin:0 0 24px;}
+.needed{display:inline-block;background:#FBEFD9;color:#7A5B12;border:1px dashed #D9B15C;border-radius:6px;padding:1px 7px;font-weight:bold;font-size:.86rem;}
+.story-result.needed-line{display:block;color:var(--navy);font-weight:normal;font-size:.9rem;}
+
+/* Tier 1 — Client work: the most prominent tier on the page */
+.work-tier--client .work-tier-head h3{font-size:1.6rem;}
+.work-grid-client{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.client-card{border-top:4px solid var(--navy);box-shadow:var(--shadow-md);}
+.client-card .mock-photo,.client-card .mock-iconpanel{min-height:220px;}
+.client-card .story-card-body{padding:26px 26px 30px;}
+.client-card h4{font-size:1.3rem;}
+
+/* Tier 3 — Studio build: deliberately compact and quiet */
+.work-tier--compact .work-tier-head h3{font-size:1.05rem;color:var(--gray);}
+.work-tier--compact .work-tier-intro{font-size:.9rem;margin-bottom:18px;}
+.compact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.compact-card{display:flex;gap:14px;align-items:flex-start;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-sm,10px);padding:16px 18px;box-shadow:none;}
+.compact-card .icon-wrap{width:38px;height:38px;flex:none;}
+.compact-card .icon-wrap svg{width:20px;height:20px;}
+.compact-card h4{font-size:.96rem;margin:0 0 4px;}
+.compact-card p{font-size:.83rem;color:var(--gray);margin:0 0 8px;line-height:1.5;}
+.compact-card .chip-row{margin:0;gap:6px;}
+.compact-card .chip{font-size:.7rem;padding:3px 8px;}
+
+.work-grid-dev{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.dev-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--gray-light,#C9CDCF);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm);}
+.dev-card h4{font-size:1.1rem;margin:0 0 8px;}
+.dev-card p{color:var(--gray);font-size:.92rem;margin:0 0 10px;}
+.dev-card .dev-status{color:var(--navy);font-weight:bold;font-size:.86rem;margin:0;}
+.honesty-box{margin-top:8px;padding:20px 26px;border:1px solid var(--border);border-radius:var(--radius);background:var(--ice-soft);}
+.honesty-box p{color:var(--gray);margin:0;max-width:720px;}
 .audit-preview{background:var(--white);}
 .audit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;margin:0 auto;}
 .audit-item{display:flex;gap:16px;padding:22px;border:1px solid var(--border);border-radius:var(--radius);background:var(--ice-soft);}
@@ -424,7 +464,7 @@ section{padding:88px 0;}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
 .field label{font-weight:bold;font-size:.9rem;color:var(--navy);}
 .field input,.field select,.field textarea{font-family:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--border);border-radius:8px;color:var(--ink);background:var(--white);}
-.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold);border-color:var(--gold);}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--gold-dark);border-color:var(--gold-dark);}
 .field-check{display:flex;align-items:flex-start;gap:10px;font-size:.86rem;color:var(--gray);margin-bottom:18px;}
 .field-check input{margin-top:3px;}
 .form-status{font-size:.9rem;font-weight:bold;margin-bottom:14px;display:none;}
@@ -491,6 +531,11 @@ footer a:hover{text-decoration:underline;color:var(--white);}
 .feature-list svg{flex:none;width:20px;height:20px;stroke:var(--accent);margin-top:2px;}
 .feature-list.on-dark svg{stroke:var(--accent-bright);}
 
+/* Horizontally-scrollable wrapper for wide diagram SVGs (never breaks mobile layout) */
+.diagram-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--ice-soft);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin:0 0 16px;}
+.diagram-scroll svg{display:block;height:auto;max-width:none;}
+.diagram-caption{font-size:.85rem;color:var(--gray);margin:0 0 32px;}
+
 /* Icon showcase grid (department "what's included") */
 .icon-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
 .icon-feature{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease;}
@@ -525,7 +570,7 @@ footer a:hover{text-decoration:underline;color:var(--white);}
   .other-depts{grid-template-columns:repeat(2,1fr);}
 }
 @media (max-width:900px){
-  .problem-grid,.services-grid,.work-grid,.pricing-grid,.dept-grid,.icon-feature-grid{grid-template-columns:repeat(2,1fr);}
+  .problem-grid,.services-grid,.work-grid,.pricing-grid,.dept-grid,.icon-feature-grid,.work-grid-dev,.work-grid-client,.compact-grid{grid-template-columns:repeat(2,1fr);}
   .review-proof-grid{grid-template-columns:repeat(2,1fr);}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .contact-wrap{grid-template-columns:1fr;}
@@ -537,7 +582,7 @@ footer a:hover{text-decoration:underline;color:var(--white);}
 }
 @media (max-width:600px){
   section{padding:64px 0;}
-  .problem-grid,.services-grid,.work-grid,.pricing-grid,.footer-grid,.dept-grid,.icon-feature-grid,.other-depts,.pricing-grid.cols-2{grid-template-columns:1fr;}
+  .problem-grid,.services-grid,.work-grid,.pricing-grid,.footer-grid,.dept-grid,.icon-feature-grid,.other-depts,.pricing-grid.cols-2,.work-grid-dev,.work-grid-client,.compact-grid{grid-template-columns:1fr;}
   .audit-grid,.review-proof-grid{grid-template-columns:1fr;}
   .audit-cta{align-items:flex-start;flex-direction:column;}
   .audit-actions{align-items:stretch;width:100%;}
