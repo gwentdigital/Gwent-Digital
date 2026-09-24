@@ -1,0 +1,58 @@
+[
+  {
+    "name": "DFLT Phase 2",
+    "source": "https://apro-gamma.vercel.app/project-preview/dflt.png",
+    "image": "assets/work/apro/dflt.webp",
+    "live": "https://dfltphase2.sdpipk.org/",
+    "github": null
+  },
+  {
+    "name": "Tech & Solutions",
+    "source": "https://apro-gamma.vercel.app/project-preview/tech-solutions.png",
+    "image": "assets/work/apro/tech-solutions.webp",
+    "live": "https://techandsolutions.co.uk/",
+    "github": null
+  },
+  {
+    "name": "EaseYT",
+    "source": "https://apro-gamma.vercel.app/project-preview/easeyt.png",
+    "image": "assets/work/apro/easeyt.webp",
+    "live": "https://easeyt.vercel.app/",
+    "github": "https://github.com/gxammad/EaseYT"
+  },
+  {
+    "name": "Hirewise",
+    "source": "https://apro-gamma.vercel.app/project-preview/hirewise.png",
+    "image": "assets/work/apro/hirewise.webp",
+    "live": "https://hirewise-kappa.vercel.app/",
+    "github": "https://github.com/gxammad/Hirewise-v2"
+  },
+  {
+    "name": "Meridian",
+    "source": "https://apro-gamma.vercel.app/project-preview/meridian.png",
+    "image": "assets/work/apro/meridian.webp",
+    "live": "https://meridian-three-gilt.vercel.app/",
+    "github": "https://github.com/gxammad/MERIDIAN"
+  },
+  {
+    "name": "SSPA Sindh Verification",
+    "source": "https://apro-gamma.vercel.app/project-preview/sspa.png",
+    "image": "assets/work/apro/sspa.webp",
+    "live": "https://sspa-sindh-verifications.vercel.app/",
+    "github": "https://github.com/gxammad/SSPA-SINDH-VERIFICATIONS"
+  },
+  {
+    "name": "Devcore",
+    "source": "https://apro-gamma.vercel.app/project-preview/devcore.png",
+    "image": "assets/work/apro/devcore.webp",
+    "live": "https://devcore-mauve-kappa.vercel.app/",
+    "github": "https://github.com/gxammad/Devcore"
+  },
+  {
+    "name": "Flood Relief Donation",
+    "source": "https://apro-gamma.vercel.app/project-preview/relief-pk.png",
+    "image": "assets/work/apro/relief-pk.webp",
+    "live": "https://relief-pk.vercel.app/",
+    "github": "https://github.com/gxammad/Relief-PK"
+  }
+]

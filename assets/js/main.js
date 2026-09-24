@@ -69,8 +69,7 @@ document.documentElement.classList.add('js');
           var modal = document.getElementById('privacy-modal');
           if (modal){
             e.preventDefault();
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
+            openModal();
           }
         });
       }
@@ -151,6 +150,7 @@ document.documentElement.classList.add('js');
       hamburger.setAttribute('aria-label','Close menu');
       mobilePanel.classList.add('open');
     }
+    document.addEventListener('keydown', function(e){if(e.key==='Escape' && mobilePanel.classList.contains('open')){closeMenu();hamburger.focus();}});
     hamburger.addEventListener('click', function(){
       if (mobilePanel.classList.contains('open')) closeMenu(); else openMenu();
     });
@@ -204,8 +204,16 @@ document.documentElement.classList.add('js');
   var modal = document.getElementById('privacy-modal');
   if (modal){
     var modalClose = document.getElementById('privacy-close');
-    function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
-    function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+    var previousFocus;
+    function openModal(){ previousFocus = document.activeElement; modal.classList.add('open'); document.body.style.overflow='hidden'; if(modalClose) modalClose.focus(); }
+    modal.addEventListener('keydown', function(e){
+      if(e.key !== 'Tab') return;
+      var items = modal.querySelectorAll('button,a[href],input,select,textarea,[tabindex="0"]');
+      var first=items[0], last=items[items.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+    });
+    function closeModal(){ if(!modal.classList.contains('open')) return; modal.classList.remove('open'); document.body.style.overflow=''; if(previousFocus) previousFocus.focus(); }
     ['privacy-link','privacy-link-footer'].forEach(function(id){
       var el = document.getElementById(id);
       if (el) el.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
@@ -216,7 +224,7 @@ document.documentElement.classList.add('js');
     if (window.location.hash === '#privacy') openModal();
   }
 
-  // Contact form: try the admin lead API first, then fall back to Netlify.
+  // Contact form: Netlify Forms. Only report success for an accepted response.
   // If the page provides a #f-need select and the URL has ?need=..., pre-select it
   // (used when arriving from a department page's "Ask about X" button).
   var form = document.getElementById('contact-form');
@@ -236,17 +244,15 @@ document.documentElement.classList.add('js');
       e.preventDefault();
       window.gwentTrack('enquiry_started', { department: needField ? needField.value : '' });
       var data = new FormData(form);
-      var adminEndpoint = form.getAttribute('data-admin-endpoint');
-      var adminRequest = adminEndpoint ? fetch(adminEndpoint, { method:'POST', body:JSON.stringify({
-        name:data.get('name'), business:data.get('business'), phone:data.get('phone'), email:data.get('email'),
-        need:data.get('need'), message:data.get('message'), website:data.get('bot-field')
-      }), headers:{'Content-Type':'application/json'} }).then(function(response){
-        if (!response.ok) throw new Error('Admin endpoint unavailable');
-        return response;
-      }) : Promise.reject(new Error('No admin endpoint configured'));
-      adminRequest.catch(function(){
-        return fetch('/', { method:'POST', body:new URLSearchParams(data).toString(), headers:{'Content-Type':'application/x-www-form-urlencoded'} });
-      }).then(function(){
+      if (form.dataset.sending === 'true') return;
+      form.dataset.sending = 'true';
+      var submitButton = form.querySelector('[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      status.textContent = 'Sending your enquiry...';
+      status.className = 'form-status show';
+      fetch('/', {method:'POST', body:new URLSearchParams(data).toString(), headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+        .then(function(response){
+          if (!response.ok) throw new Error('Enquiry was not accepted');
           status.textContent = "Thanks — your enquiry is in. We'll reply within 24 hours.";
           status.className = 'form-status show ok';
           window.gwentTrack('enquiry_submitted', { department: data.get('need') });
@@ -256,7 +262,182 @@ document.documentElement.classList.add('js');
         .catch(function(){
           status.textContent = "Something went wrong sending that. Please email hello@gwentdigital.co.uk directly.";
           status.className = 'form-status show err';
+          status.focus();
+          form.dataset.sending = 'false';
+          if (submitButton) submitButton.disabled = false;
         });
     });
+  }
+
+  // Interactive Project Cost Calculator
+  var calcContainer = document.getElementById('project-calculator');
+  if (calcContainer) {
+    var projectRadios = calcContainer.querySelectorAll('input[name="calc-project"]');
+    var scopeRadios = calcContainer.querySelectorAll('input[name="calc-pages"]');
+    var addonCheckboxes = calcContainer.querySelectorAll('input[name="calc-addon"]');
+
+    var breakdownEl = document.getElementById('calc-breakdown');
+    var totalAmountEl = document.getElementById('calc-total-amount');
+    var monthlyAmountEl = document.getElementById('calc-monthly-amount');
+    var turnaroundEl = document.getElementById('calc-turnaround');
+    var depositEl = document.getElementById('calc-deposit');
+    var quoteContactBtn = document.getElementById('calc-btn-contact');
+    var quoteWhatsappBtn = document.getElementById('calc-btn-whatsapp');
+    var prevOneTimeTotal = null;
+    var prevDeposit = null;
+
+    function animateNumber(el, startVal, endVal, prefix, suffix, isBounce) {
+      if (!el) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || startVal === null || startVal === endVal) {
+        el.textContent = (prefix || '') + endVal.toLocaleString('en-GB') + (suffix || '');
+        return;
+      }
+      if (isBounce) {
+        el.classList.remove('price-bump');
+        void el.offsetWidth;
+        el.classList.add('price-bump');
+      }
+      var startTime = performance.now();
+      var duration = 280;
+      function tick(now) {
+        var elapsed = now - startTime;
+        var progress = Math.min(elapsed / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(startVal + (endVal - startVal) * ease);
+        el.textContent = (prefix || '') + current.toLocaleString('en-GB') + (suffix || '');
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = (prefix || '') + endVal.toLocaleString('en-GB') + (suffix || '');
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function updateCalculator() {
+      var selectedProject = calcContainer.querySelector('input[name="calc-project"]:checked');
+      var selectedScope = calcContainer.querySelector('input[name="calc-pages"]:checked');
+
+      // Update active classes for choices
+      calcContainer.querySelectorAll('.calc-choice').forEach(function(choice) {
+        var input = choice.querySelector('input');
+        if (input) {
+          if (input.checked) {
+            choice.classList.add('active');
+          } else {
+            choice.classList.remove('active');
+          }
+        }
+      });
+
+      var basePrice = selectedProject ? parseInt(selectedProject.getAttribute('data-price'), 10) : 850;
+      var projectName = selectedProject ? selectedProject.getAttribute('data-name') : 'Custom Website Build';
+      var deptName = selectedProject ? selectedProject.getAttribute('data-dept') : 'Web Design & Development';
+      var baseTurnaround = selectedProject ? selectedProject.getAttribute('data-turnaround') : '7–12 days';
+
+      var scopePrice = selectedScope ? parseInt(selectedScope.getAttribute('data-price'), 10) : 0;
+      var scopeName = selectedScope ? selectedScope.getAttribute('data-name') : 'Standard Scope';
+
+      var oneTimeTotal = basePrice + scopePrice;
+      var monthlyTotal = 0;
+      var addonsList = [];
+
+      addonCheckboxes.forEach(function(cb) {
+        if (cb.checked) {
+          var price = parseInt(cb.getAttribute('data-price'), 10);
+          var isMonthly = cb.getAttribute('data-is-monthly') === 'true';
+          var name = cb.getAttribute('data-name');
+          if (isMonthly) {
+            monthlyTotal += price;
+            addonsList.push({ name: name, price: '£' + price + '/mo' });
+          } else {
+            oneTimeTotal += price;
+            addonsList.push({ name: name, price: '£' + price });
+          }
+        }
+      });
+
+      // Build breakdown HTML
+      var html = '';
+      html += '<li><span>' + projectName + '</span><span>£' + basePrice.toLocaleString('en-GB') + '</span></li>';
+      if (scopePrice > 0) {
+        html += '<li><span>' + scopeName + '</span><span>+£' + scopePrice.toLocaleString('en-GB') + '</span></li>';
+      }
+      addonsList.forEach(function(item) {
+        html += '<li><span>' + item.name + '</span><span>+' + item.price + '</span></li>';
+      });
+      if (breakdownEl) breakdownEl.innerHTML = html;
+
+      // Update Total Displays with smooth rolling counter animation
+      if (totalAmountEl) {
+        animateNumber(totalAmountEl, prevOneTimeTotal, oneTimeTotal, '£', '', true);
+        prevOneTimeTotal = oneTimeTotal;
+      }
+      if (monthlyAmountEl) {
+        if (monthlyTotal > 0) {
+          monthlyAmountEl.textContent = '+ £' + monthlyTotal + '/month (ongoing retainer)';
+          monthlyAmountEl.style.display = 'block';
+        } else {
+          monthlyAmountEl.style.display = 'none';
+        }
+      }
+
+      // 50% milestone deposit with animated counter
+      var deposit = Math.round(oneTimeTotal / 2);
+      if (depositEl) {
+        animateNumber(depositEl, prevDeposit, deposit, '£', '', false);
+        prevDeposit = deposit;
+      }
+
+      // Turnaround estimate
+      if (turnaroundEl) turnaroundEl.textContent = baseTurnaround;
+
+      // Compose pre-fill message
+      var summaryMsg = "Hi Gwent Digital,\n\nI just calculated an estimate on your website for:\n" +
+        "- Project: " + projectName + "\n" +
+        "- Scope: " + scopeName + "\n";
+      if (addonsList.length > 0) {
+        summaryMsg += "- Add-ons: " + addonsList.map(function(a){ return a.name + " (" + a.price + ")"; }).join(', ') + "\n";
+      }
+      summaryMsg += "- Estimated One-Time Investment: £" + oneTimeTotal.toLocaleString('en-GB') + "\n";
+      if (monthlyTotal > 0) {
+        summaryMsg += "- Estimated Ongoing Care: £" + monthlyTotal + "/month\n";
+      }
+      summaryMsg += "\nCould we discuss this project?";
+
+      // Wire WhatsApp button
+      if (quoteWhatsappBtn) {
+        quoteWhatsappBtn.href = "https://wa.me/447405376702?text=" + encodeURIComponent(summaryMsg);
+      }
+
+      // Wire Lock-in / Contact button
+      if (quoteContactBtn) {
+        quoteContactBtn.onclick = function(e) {
+          e.preventDefault();
+          var contactSection = document.getElementById('contact');
+          var msgField = document.getElementById('f-message');
+          var needField = document.getElementById('f-need');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
+          if (msgField) {
+            msgField.value = summaryMsg;
+          }
+          if (needField) {
+            Array.prototype.forEach.call(needField.options, function(opt) {
+              if (opt.value.toLowerCase().indexOf(deptName.toLowerCase().slice(0, 5)) !== -1) {
+                needField.value = opt.value;
+              }
+            });
+          }
+        };
+      }
+    }
+
+    calcContainer.querySelectorAll('input').forEach(function(input) {
+      input.addEventListener('change', updateCalculator);
+    });
+
+    updateCalculator();
   }
 })();
