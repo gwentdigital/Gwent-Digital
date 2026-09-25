@@ -330,7 +330,7 @@ document.documentElement.classList.add('js');
         }
       });
 
-      var basePrice = selectedProject ? parseInt(selectedProject.getAttribute('data-price'), 10) : 850;
+      var basePrice = selectedProject ? parseInt(selectedProject.getAttribute('data-price'), 10) : 935;
       var projectName = selectedProject ? selectedProject.getAttribute('data-name') : 'Custom Website Build';
       var deptName = selectedProject ? selectedProject.getAttribute('data-dept') : 'Web Design & Development';
       var baseTurnaround = selectedProject ? selectedProject.getAttribute('data-turnaround') : '7–12 days';

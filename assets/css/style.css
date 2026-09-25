@@ -1241,3 +1241,8 @@ body{font-size:17px;line-height:1.6;}
 .hero-visual img{height:auto;max-height:none;object-fit:contain;}
 .about-mark picture,.about-mark img{width:100%;height:auto;display:block;}
 section[id]{scroll-margin-top:90px;}
+
+.additional-pricing-head{margin-top:64px;}
+.additional-pricing{grid-template-columns:repeat(2,minmax(0,1fr));}
+.additional-pricing .btn{margin-top:auto;}
+@media(max-width:600px){.additional-pricing{grid-template-columns:1fr;}}
